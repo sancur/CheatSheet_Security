@@ -200,7 +200,7 @@ nmap -6 [target]
 
 ## Port Scanning Options
 
-### Perform a Fast Scan
+### Perform a Fast Scan (100 common ports)
 ```shell
 nmap -F [target]
 ```
